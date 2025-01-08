@@ -30,6 +30,7 @@ interface DefaultTheme {
   };
 
   spacing: {
+    0: string;
     1: string;
     2: string;
     3: string;
@@ -44,6 +45,7 @@ interface DefaultTheme {
   };
 
   borderRadius: {
+    0: string;
     1: string;
     2: string;
     3: string;
@@ -160,6 +162,7 @@ export const theme: DefaultTheme = {
   },
 
   spacing: {
+    0: "0rem",
     1: "0.4rem",
     2: "0.8rem",
     3: "1.2rem",
@@ -174,6 +177,7 @@ export const theme: DefaultTheme = {
   },
 
   borderRadius: {
+    0: "0rem",
     1: "0.2rem",
     2: "0.4rem",
     3: "0.6rem",
