@@ -6,7 +6,7 @@ import {
 } from "./Text.styled";
 
 type Tag = "p" | "span" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
-type Size = "default" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9";
+type Size = "default" | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 type TextAlign = "left" | "center" | "right" | "justify";
 type FontWeight = "normal" | "bold";
 type FontStyle = "normal" | "italic";

@@ -1,99 +1,41 @@
 import styled, { css, DefaultTheme } from "styled-components";
-import React, { ReactNode } from "react";
 import { TextProps } from "./Text";
+import React from "react";
 
 type StyledTextProps = TextProps & { theme: DefaultTheme };
 
-const mapFontSize = {
-  default: css`
-    ${({ theme }) => theme.fontSize[3]};
-  `,
-  1: css`
-    ${({ theme }) => theme.fontSize[1]};
-  `,
-  2: css`
-    ${({ theme }) => theme.fontSize[2]};
-  `,
-  3: css`
-    ${({ theme }) => theme.fontSize[3]};
-  `,
-  4: css`
-    ${({ theme }) => theme.fontSize[4]};
-  `,
-  5: css`
-    ${({ theme }) => theme.fontSize[5]};
-  `,
-  6: css`
-    ${({ theme }) => theme.fontSize[6]};
-  `,
-  7: css`
-    ${({ theme }) => theme.fontSize[7]};
-  `,
-  8: css`
-    ${({ theme }) => theme.fontSize[8]};
-  `,
-  9: css`
-    ${({ theme }) => theme.fontSize[9]};
-  `,
-};
+const createFontSizeMap = (theme: DefaultTheme) => ({
+  default: theme.fontSize[3],
+  1: theme.fontSize[1],
+  2: theme.fontSize[2],
+  3: theme.fontSize[3],
+  4: theme.fontSize[4],
+  5: theme.fontSize[5],
+  6: theme.fontSize[6],
+  7: theme.fontSize[7],
+  8: theme.fontSize[8],
+  9: theme.fontSize[9],
+});
 
-const mapFontSizeMobile = {
-  default: css`
-    ${({ theme }) => theme.fontSize[3]};
-  `,
-  1: css`
-    ${({ theme }) => theme.fontSize[1]};
-  `,
-  2: css`
-    ${({ theme }) => theme.fontSize[2]};
-  `,
-  3: css`
-    ${({ theme }) => theme.fontSize[3]};
-  `,
-  4: css`
-    ${({ theme }) => theme.fontSize[4]};
-  `,
-  5: css`
-    ${({ theme }) => theme.fontSize[5]};
-  `,
-  6: css`
-    ${({ theme }) => theme.fontSize[6]};
-  `,
-  7: css`
-    ${({ theme }) => theme.fontSize[7]};
-  `,
-  8: css`
-    ${({ theme }) => theme.fontSize[8]};
-  `,
-  9: css`
-    ${({ theme }) => theme.fontSize[9]};
-  `,
-};
+const mapFontSize = (theme: DefaultTheme) => createFontSizeMap(theme);
+const mapFontSizeMobile = (theme: DefaultTheme) => createFontSizeMap(theme);
 
 const commonTextStyles = (
   align?: string,
   fontStyle?: string,
   fontWeight?: string
 ) => css`
-  text-align: ${align};
+  text-align: ${align || "justify"};
   font-style: ${fontStyle || "normal"};
   font-weight: ${fontWeight || "normal"};
 `;
 
-type StylesObject = {
-  h1: ReturnType<typeof css>;
-  h2: ReturnType<typeof css>;
-  h3: ReturnType<typeof css>;
-  p: ReturnType<typeof css>;
-  span: ReturnType<typeof css>;
-};
-
 const mapTypeStyles = (
   baseStyles: ReturnType<typeof commonTextStyles>,
   theme: DefaultTheme,
-  size: keyof typeof mapFontSize,
-  color: string | undefined
-): StylesObject => ({
+  size: keyof ReturnType<typeof createFontSizeMap>,
+  color?: string
+) => ({
   h1: css`
     ${baseStyles}
     position: relative;
@@ -102,7 +44,7 @@ const mapTypeStyles = (
     font-weight: 600;
 
     ${theme.mediaQueries.mobileAndTablet} {
-      font-size: ${theme.fontSize[6]};
+      font-size: ${mapFontSizeMobile(theme)[size]};
       padding: ${theme.spacing[0]};
     }
   `,
@@ -117,7 +59,7 @@ const mapTypeStyles = (
     font-weight: 600;
 
     ${theme.mediaQueries.mobileAndTablet} {
-      font-size: ${!!size && mapFontSizeMobile[size]};
+      font-size: ${mapFontSizeMobile(theme)[size]};
     }
   `,
   h3: css`
@@ -126,57 +68,58 @@ const mapTypeStyles = (
     font-weight: 600;
 
     ${theme.mediaQueries.mobileAndTablet} {
-      font-size: ${!!size && mapFontSizeMobile[size]};
+      font-size: ${mapFontSizeMobile(theme)[size]};
     }
   `,
   p: css`
     ${baseStyles}
-    font-size: ${!!size && mapFontSize[size]};
+    font-size: ${mapFontSize(theme)[size]};
     line-height: ${theme.lineHeight[4]};
     margin: ${theme.spacing[3]};
     ${color &&
     css`
-      color: ${({ theme }) => theme.color[color]};
+      color: ${theme.color[color] || color};
     `}
 
     ${theme.mediaQueries.mobileAndTablet} {
-      font-size: ${!!size && mapFontSizeMobile[size]};
+      font-size: ${mapFontSizeMobile(theme)[size]};
     }
   `,
   span: css`
     ${baseStyles}
     ${color
       ? css`
-          color: ${({ theme }) => theme.color[color]};
+          color: ${theme.color[color] || color};
         `
       : css`
-          background: ${theme.background.primary};
+          background: ${theme.color.primary};
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
         `}
-    font-size: ${!!size && mapFontSize[size]};
+    font-size: ${mapFontSize(theme)[size]};
     margin: ${theme.spacing[3]};
 
     ${theme.mediaQueries.mobileAndTablet} {
-      font-size: ${!!size && mapFontSizeMobile[size]};
+      font-size: ${mapFontSizeMobile(theme)[size]};
       margin: ${theme.spacing[3]};
     }
   `,
 });
 
-const getStyles = ({
-  as,
-  theme,
-  size,
-  color,
-  align,
-  fontStyle,
-  fontWeight,
-}: StyledTextProps): ReturnType<typeof css> => {
+const getStyles = (props: StyledTextProps) => {
+  const {
+    as = "span",
+    theme,
+    size = "default",
+    color,
+    align,
+    fontStyle,
+    fontWeight,
+  } = props;
   const baseStyles = commonTextStyles(align, fontStyle, fontWeight);
-  const stylesObject = mapTypeStyles(baseStyles, theme, size!, color);
+  const stylesObject = mapTypeStyles(baseStyles, theme, size, color);
 
-  return stylesObject[as as keyof StylesObject] || css``;
+  return stylesObject[as as keyof typeof stylesObject] || css``;
 };
 
 export const Wrapper = styled.div`
@@ -203,12 +146,8 @@ export const Text = styled(
     className,
     size,
     image,
-    ...rest
-  }: TextProps & { children: ReactNode }) =>
-    React.createElement(as, { className, ...rest }, [
-      children,
-      image && as === "h1",
-    ])
-)<TextProps & { children: ReactNode }>`
+  }: TextProps & { children: React.ReactNode }) =>
+    React.createElement(as, { className }, children)
+)<TextProps & { children: React.ReactNode }>`
   ${({ theme, ...props }) => getStyles({ theme, ...props })}
 `;
