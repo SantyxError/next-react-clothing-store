@@ -1,38 +1,44 @@
+import { productsService } from "@/core/services/Products.service";
 import { useEffect, useState } from "react";
-import { getProductsByCategory } from "../core/services/Products.service";
+
+type Product = {
+  sku: string;
+  name: string;
+  salePrice: number;
+  image: string;
+};
 
 export default function Home() {
-  const [products, setProducts] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
+  const [products, setProducts] = useState<Product[]>([]);
+  const getProducts = async () => {
+    const productsData = await productsService.getProducts();
+    if (productsData) {
+      setProducts(productsData.products);
+      setIsLoading(false);
+    }
+  };
 
   useEffect(() => {
-    const fetchProducts = async () => {
-      try {
-        const data = await getProductsByCategory("abcat0502000");
-        setProducts(data.products);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchProducts();
+    getProducts();
   }, []);
-
-  if (loading) {
-    return <p>Loading...</p>;
+  if (isLoading) {
+    return (
+      <div className="App">
+        <h1>Cargando...</h1>
+      </div>
+    );
   }
 
   return (
-    <div>
-      <h1>Productos</h1>
+    <div className="App">
+      <h1>Productos:</h1>
       <ul>
         {products.map((product) => (
           <li key={product.sku}>
-            <img src={product.image} alt={product.name} width={100} />
-            <p>{product.name}</p>
-            <p>${product.salePrice}</p>
+            <img src={product.image} alt={product.name} width="100" />
+            <h2>{product.name}</h2>
+            <p>Precio: ${product.salePrice}</p>
           </li>
         ))}
       </ul>

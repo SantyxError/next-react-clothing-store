@@ -1,4 +1,10 @@
-export type Products = {
+export type Product = {
+  sku: string;
   name: string;
-  url: string;
+  salePrice: number;
+  image: string;
+};
+
+export type Products = {
+  products: Product[];
 };
