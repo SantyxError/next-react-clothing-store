@@ -19,7 +19,7 @@ const getProducts = async (): Promise<Products> => {
     const response = await axios.get<ProductsDTO>(url);
     return mapProducts(response.data);
   } catch (error) {
-    console.error("Error fetching product:", error);
+    console.error("Error fetching products:", error);
     throw error;
   }
 };
