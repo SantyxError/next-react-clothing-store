@@ -1,3 +1,4 @@
+import React from "react";
 import { screen } from "@testing-library/react";
 import { renderProvider } from "@/__tests__/renderProvider";
 import { Text } from "@/ui/components/atoms/Text/Text.styled";

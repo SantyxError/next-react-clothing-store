@@ -1,3 +1,4 @@
+import React from "react";
 import { renderProvider } from "@/__tests__/renderProvider";
 import { Button } from "../Button";
 import "@testing-library/jest-dom";

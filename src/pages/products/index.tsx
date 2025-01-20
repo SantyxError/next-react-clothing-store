@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Product } from "@/core/domain/Products.model";
 import { productsService } from "@/core/services/Products.service";
 import { GridContainer } from "@/ui/components/molecules/GridContainer/GridContainer";
@@ -32,7 +33,12 @@ export default function Products() {
       <GridContainer columns={3} rows={3}>
         {products.map((product) => (
           <div key={product.sku}>
-            <img src={product.image} alt={product.name} width="100" />
+            <Image
+              src={product.image}
+              width={400}
+              height={200}
+              alt={product.name}
+            />
             <h2>{product.name}</h2>
             <p>Precio: ${product.salePrice}</p>
             <Link
