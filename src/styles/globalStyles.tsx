@@ -1,8 +1,6 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:wght@200;400&display=swap');
-
   html,
   body {
     background-color: ${({ theme }) => theme.color.background};
@@ -33,7 +31,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   button {
-    font-family: 'Outfit', sans-serif;
+    font-family: ${({ theme }) => theme.fontFamily.primary};
   }
 `;
 
