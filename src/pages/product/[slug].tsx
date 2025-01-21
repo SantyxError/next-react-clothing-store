@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import { Product as ProductModel } from "@/core/domain/Product.model";
 import { productService } from "@/core/services/Product.service";
+import ProductDetails from "@/ui/components/molecules/ProductDetails/ProductDetails";
 
 export default function Product() {
   const router = useRouter();
@@ -36,8 +37,16 @@ export default function Product() {
 
   return (
     <>
-      <p>Product: {product.name}</p>
-      <p>Image: {product.image}</p>
+      <ProductDetails
+        product={{
+          sku: product.sku,
+          name: product.name,
+          salePrice: product.salePrice,
+          image: product.image,
+          description: product.description,
+          reviewAverage: product.reviewAverage,
+        }}
+      />
     </>
   );
 }
