@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Product } from "@/core/domain/Products.model";
 import { productsService } from "@/core/services/Products.service";
 import ProductCard from "../../molecules/ProductCard/ProductCard";
-import { ProductsListWrapper } from "./ProductsList.styled";
+import { ProductsListWrapper, Title } from "./ProductsList.styled";
 
 export default function ProductsList() {
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +26,7 @@ export default function ProductsList() {
 
   return (
     <>
-      <h1>Lista de productos</h1>
+      <Title>Lista de productos</Title>
       <ProductsListWrapper>
         {products.map((product) => (
           <ProductCard key={product.sku} product={product} />

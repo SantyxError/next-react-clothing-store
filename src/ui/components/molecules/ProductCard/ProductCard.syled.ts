@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 // Wrapper para la tarjeta del producto
 export const ProductCardWrapper = styled.div`
+  background-color: ${({ theme }) => theme.color.background};
   border: 1px solid ${({ theme }) => theme.color.border};
   border-radius: ${({ theme }) => theme.borderRadius[4]};
   padding: ${({ theme }) => theme.spacing[4]};
@@ -16,15 +17,15 @@ export const ProductCardWrapper = styled.div`
 // Imagen del producto
 export const ProductImage = styled.div`
   width: 100%;
-  height: 200px; /* Ajusta esta altura según tus necesidades */
-  overflow: hidden; /* Asegura que no se desborden las imágenes */
+  height: 200px; 
+  overflow: hidden; 
   display: flex;
-  justify-content: center; /* Centra las imágenes */
-  align-items: center; /* Centra las imágenes */
+  justify-content: center; 
+  align-items: center;
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Asegura que la imagen mantenga su aspecto */
+    object-fit: cover; 
   }
 `;
 
