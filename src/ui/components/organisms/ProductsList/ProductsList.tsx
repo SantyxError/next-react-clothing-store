@@ -10,56 +10,58 @@ import {
   ProductName,
   ProductPrice,
   DetailsLink,
-} from "./ProductsList.styled"; // Importar los estilos
+} from "./ProductsList.styled";
 
 export default function ProductsList() {
   const [isLoading, setIsLoading] = useState(true);
   const [products, setProducts] = useState<Product[]>([]);
 
-  // Obtener los productos desde el servicio
   const getProducts = async () => {
     const productsData = await productsService.getProducts();
     if (productsData) {
-      setProducts(productsData.products); // Actualizar el estado de productos
-      setIsLoading(false); // Detener la carga
+      setProducts(productsData.products);
+      setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    getProducts(); // Obtener productos al montar el componente
+    getProducts();
   }, []);
 
-  // Si está cargando, mostrar mensaje de carga
   if (isLoading) {
     return <div>Cargando...</div>;
   }
 
   return (
-    <ProductsListWrapper>
-      {products.map((product) => (
-        <ProductCard key={product.sku}>
-          {/* Usando Image de Next.js para cargar la imagen */}
-          <ProductImage>
-            <Image
-              className="product-image"
-              src={product.image}
-              width={400}
-              height={200}
-              alt={product.name}
-            />
-          </ProductImage>
-          <ProductName>{product.name}</ProductName>
-          <ProductPrice>${product.salePrice}</ProductPrice>
-          <Link
-            href={{
-              pathname: "/product/[slug]",
-              query: { slug: product.sku },
-            }}
-            passHref>
-            <DetailsLink>Ver detalles</DetailsLink>
-          </Link>
-        </ProductCard>
-      ))}
-    </ProductsListWrapper>
+    <>
+      <h1>Lista de productos</h1>
+
+      <ProductsListWrapper>
+        {products.map((product) => (
+          <ProductCard key={product.sku}>
+            <ProductImage>
+              <Image
+                className="product-image"
+                src={product.image}
+                width={400}
+                height={400}
+                alt={product.name}
+                layout="intrinsic"
+              />
+            </ProductImage>
+            <ProductName>{product.name}</ProductName>
+            <ProductPrice>${product.salePrice}</ProductPrice>
+            <Link
+              href={{
+                pathname: "/product/[slug]",
+                query: { slug: product.sku },
+              }}
+              passHref>
+              <DetailsLink>Ver detalles</DetailsLink>
+            </Link>
+          </ProductCard>
+        ))}
+      </ProductsListWrapper>
+    </>
   );
 }

@@ -11,6 +11,7 @@ export const ProductsListWrapper = styled.div`
   // Ajustes para pantallas pequeñas (móviles)
   ${theme.mediaQueries.mobile} {
     grid-template-columns: 1fr; // Una columna en móviles
+    padding: ${theme.spacing[2]};
   }
 
   // Ajustes para tabletas y más grandes
@@ -19,21 +20,25 @@ export const ProductsListWrapper = styled.div`
       auto-fill,
       minmax(300px, 1fr)
     ); // Aumentamos el tamaño mínimo de las columnas
+    gap: ${theme.spacing[2]}; // Menor espacio entre columnas en tablets
   }
 `;
 
 export const ProductCard = styled.div`
   background-color: ${theme.color.background};
   border: 1px solid ${theme.color.border};
-  border-radius: ${theme.borderRadius[2]}; 
-  box-shadow: ${theme.boxShadow[2]}; 
+  border-radius: ${theme.borderRadius[2]};
+  box-shadow: ${theme.boxShadow[2]};
   transition: transform 0.3s ease-in-out;
   padding: ${theme.spacing[3]};
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   &:hover {
     transform: translateY(-10px);
-    box-shadow: ${theme.boxShadow[3]}; 
+    box-shadow: ${theme.boxShadow[3]};
   }
 `;
 
@@ -52,6 +57,7 @@ export const ProductName = styled.h3`
   font-weight: ${theme.fontWeights.bold};
   color: ${theme.color.textPrimary};
   margin: ${theme.spacing[2]} 0;
+  line-height: 1.4;
 `;
 
 export const ProductPrice = styled.p`
@@ -69,6 +75,8 @@ export const DetailsLink = styled.a`
   padding: ${theme.spacing[2]};
   border-radius: ${theme.borderRadius};
   transition: background-color 0.3s ease;
+  display: inline-block;
+  margin-top: ${theme.spacing[2]};
 
   &:hover {
     background-color: ${theme.color.linkHover};
