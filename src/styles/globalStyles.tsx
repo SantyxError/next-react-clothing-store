@@ -1,16 +1,17 @@
 import { createGlobalStyle } from "styled-components";
+import { theme } from "../styles/theme"; //
 
 const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Poppins:wght@200;400&display=swap');
 
   html,
   body {
-    height: 100%;
+    background-color: ${theme.color.background};
+    color: ${theme.color.textPrimary};
+    font-family: ${theme.fontFamily.primary};
     margin: 0;
     padding: 0;
-    font-family: 'Outfit', sans-serif;
-    background: #161513;
-    color: white;
+    box-sizing: border-box;
   }
 
   h1,

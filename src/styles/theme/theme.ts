@@ -2,12 +2,16 @@ interface DefaultTheme {
   color: {
     primary: string;
     secondary: string;
-    terciary: string;
-    white: string;
-    black: string;
-    grey: string;
-    lightGrey: string;
-    darkGrey: string;
+    background: string;
+    backgroundSecondary: string;
+    textPrimary: string;
+    textSecondary: string;
+    link: string;
+    linkHover: string;
+    border: string;
+    success: string;
+    warning: string;
+    error: string;
   };
 
   fontFamily: {
@@ -27,6 +31,12 @@ interface DefaultTheme {
     8: string;
     9: string;
     10: string;
+  };
+
+  fontWeights: {
+    regular: number;
+    medium: number;
+    bold: number;
   };
 
   spacing: {
@@ -132,14 +142,18 @@ interface DefaultTheme {
 
 export const theme: DefaultTheme = {
   color: {
-    primary: "#3498db", // Azul claro
-    secondary: "#2ecc71", // Verde claro
-    terciary: "#e74c3c", // Rojo
-    white: "#ffffff",
-    black: "#000000",
-    grey: "#bdc3c7", // Gris claro
-    lightGrey: "#ecf0f1", // Gris más claro
-    darkGrey: "#34495e", // Gris oscuro
+    primary: "#1976d2", // Azul vibrante
+    secondary: "#f44336", // Rojo vibrante
+    background: "#ffffff", // Blanco
+    backgroundSecondary: "#f5f5f5", // Gris suave
+    textPrimary: "#333333", // Gris oscuro
+    textSecondary: "#757575", // Gris medio
+    link: "#1565c0", // Azul oscuro para enlaces
+    linkHover: "#0d47a1", // Azul muy oscuro para hover
+    border: "#e0e0e0", // Gris claro para bordes
+    success: "#4caf50", // Verde para éxito
+    warning: "#ffeb3b", // Amarillo para advertencia
+    error: "#d32f2f", // Rojo oscuro para error
   },
 
   fontFamily: {
@@ -159,6 +173,12 @@ export const theme: DefaultTheme = {
     8: "2rem",
     9: "3rem",
     10: "4.5rem",
+  },
+
+  fontWeights: {
+    regular: 400,
+    medium: 500,
+    bold: 600,
   },
 
   spacing: {
