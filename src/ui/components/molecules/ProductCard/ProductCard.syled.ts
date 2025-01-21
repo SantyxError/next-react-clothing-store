@@ -1,61 +1,73 @@
 import styled from "styled-components";
 
-export const ProductCardContainer = styled.div`
-  background-color: ${({ theme }) => theme.color.background};
-  border: ${({ theme }) => theme.border[1]} solid
-    ${({ theme }) => theme.color.border};
-  border-radius: ${({ theme }) => theme.borderRadius[2]};
+// Wrapper para la tarjeta del producto
+export const ProductCardWrapper = styled.div`
+  border: 1px solid ${({ theme }) => theme.color.border};
+  border-radius: ${({ theme }) => theme.borderRadius[4]};
+  padding: ${({ theme }) => theme.spacing[4]};
   box-shadow: ${({ theme }) => theme.boxShadow[2]};
-  overflow: hidden;
+  text-align: center;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 350px;
-  margin: ${({ theme }) => theme.spacing[4]} 0;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  justify-content: space-between;
+  height: 100%;
+`;
 
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: ${({ theme }) => theme.boxShadow[4]};
+// Imagen del producto
+export const ProductImage = styled.div`
+  width: 100%;
+  height: 200px; /* Ajusta esta altura según tus necesidades */
+  overflow: hidden; /* Asegura que no se desborden las imágenes */
+  display: flex;
+  justify-content: center; /* Centra las imágenes */
+  align-items: center; /* Centra las imágenes */
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen mantenga su aspecto */
   }
 `;
 
-export const ProductImage = styled.img`
-  width: 100%;
-  height: 250px;
-  object-fit: cover;
-`;
-
-export const ProductInfo = styled.div`
-  padding: ${({ theme }) => theme.spacing[3]};
-`;
-
-export const ProductName = styled.h3`
-  font-family: ${({ theme }) => theme.fontFamily.primary};
-  font-size: ${({ theme }) => theme.fontSize[5]};
-  color: ${({ theme }) => theme.color.textPrimary};
-  margin: 0;
-  margin-bottom: ${({ theme }) => theme.spacing[2]};
-`;
-
-export const ProductPrice = styled.p`
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+// Nombre del producto
+export const ProductName = styled.h2`
   font-size: ${({ theme }) => theme.fontSize[4]};
-  color: ${({ theme }) => theme.color.primary};
-  font-weight: ${({ theme }) => theme.fontWeights.bold};
-  margin: 0;
+  margin-top: ${({ theme }) => theme.spacing[2]};
 `;
 
-export const ProductLink = styled.a`
-  font-family: ${({ theme }) => theme.fontFamily.secondary};
+// Precio del producto
+export const ProductPrice = styled.p`
   font-size: ${({ theme }) => theme.fontSize[3]};
+  color: ${({ theme }) => theme.color.textSecondary};
+  margin-top: ${({ theme }) => theme.spacing[2]};
+`;
+
+// Enlace de detalles
+export const DetailsLink = styled.a`
   color: ${({ theme }) => theme.color.link};
   text-decoration: none;
-  margin-top: ${({ theme }) => theme.spacing[2]};
+  font-size: ${({ theme }) => theme.fontSize[2]};
+  margin-top: ${({ theme }) => theme.spacing[3]};
   display: inline-block;
-  transition: color 0.3s ease;
 
   &:hover {
+    text-decoration: underline;
     color: ${({ theme }) => theme.color.linkHover};
+  }
+`;
+
+// Botón dentro de la tarjeta
+export const CardButton = styled.button`
+  background-color: ${({ theme }) => theme.color.primary};
+  color: ${({ theme }) => theme.color.white};
+  padding: ${({ theme }) => theme.spacing[2]} ${({ theme }) => theme.spacing[3]};
+  border: none;
+  border-radius: ${({ theme }) => theme.borderRadius[3]};
+  cursor: pointer;
+  font-size: ${({ theme }) => theme.fontSize[2]};
+  margin-top: ${({ theme }) => theme.spacing[4]};
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.primaryDark};
   }
 `;

@@ -1,25 +1,47 @@
-import React from "react";
-import { Product } from "../../../../core/domain/Product.model";
+import { Product } from "@/core/domain/Products.model";
+import Link from "next/link";
+import Image from "next/image";
 import {
-  ProductCardContainer,
+  ProductCardWrapper,
   ProductImage,
-  ProductInfo,
   ProductName,
   ProductPrice,
+  DetailsLink,
+  CardButton,
 } from "./ProductCard.syled";
 
 type ProductCardProps = {
   product: Product;
 };
 
-export const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard = ({ product }: ProductCardProps) => {
   return (
-    <ProductCardContainer>
-      <ProductImage src={product.image} alt={product.name} />
-      <ProductInfo>
-        <ProductName>{product.name}</ProductName>
-        <ProductPrice>${product.salePrice}</ProductPrice>
-      </ProductInfo>
-    </ProductCardContainer>
+    <ProductCardWrapper>
+      <ProductImage>
+        <Image
+          className="product-image"
+          src={product.image}
+          width={400}
+          height={400}
+          alt={product.name}
+          layout="intrinsic"
+        />
+      </ProductImage>
+      <ProductName>{product.name}</ProductName>
+      <ProductPrice>${product.salePrice}</ProductPrice>
+      <Link
+        href={{
+          pathname: "/product/[slug]",
+          query: { slug: product.sku },
+        }}
+        passHref>
+        <DetailsLink>Ver detalles</DetailsLink>
+      </Link>
+      <CardButton onClick={() => alert(`Detalles de ${product.name}`)}>
+        Añadir al carrito
+      </CardButton>
+    </ProductCardWrapper>
   );
 };
+
+export default ProductCard;
