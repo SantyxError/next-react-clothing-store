@@ -2,7 +2,7 @@ import { Meta, StoryObj } from "@storybook/react";
 import { GridContainer } from "./GridContainer";
 
 const meta: Meta<typeof GridContainer> = {
-  title: "atoms/GridContainer",
+  title: "molecules/GridContainer",
   component: GridContainer,
   tags: ["autodocs"],
 };
