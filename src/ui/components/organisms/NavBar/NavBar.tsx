@@ -6,6 +6,8 @@ import {
   MenuItem,
   BurgerMenu,
   BurgerIcon,
+  CartIconWrapper,
+  CartIcon,
 } from "./NavBar.styled";
 
 const Navbar: React.FC = () => {
@@ -28,6 +30,9 @@ const Navbar: React.FC = () => {
         <MenuItem href="/products">Productos</MenuItem>
         <MenuItem href="/contact">Contacto</MenuItem>
       </Menu>
+      <CartIconWrapper>
+        <CartIcon size={24} />
+      </CartIconWrapper>
     </NavbarContainer>
   );
 };
