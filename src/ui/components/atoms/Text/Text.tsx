@@ -10,7 +10,20 @@ type Size = "default" | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
 type TextAlign = "left" | "center" | "right" | "justify";
 type FontWeight = "normal" | "bold";
 type FontStyle = "normal" | "italic";
-type Color = "white" | "primary" | "secondary" | "bone" | "grey" | string;
+type Color =
+  | "primary"
+  | "secondary"
+  | "background"
+  | "backgroundSecondary"
+  | "textPrimary"
+  | "textSecondary"
+  | "link"
+  | "linkHover"
+  | "border"
+  | "success"
+  | "warning"
+  | "error"
+  | string;
 
 export type TextProps = {
   children: ReactNode;

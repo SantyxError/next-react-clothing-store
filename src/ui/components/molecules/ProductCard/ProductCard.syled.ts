@@ -17,15 +17,15 @@ export const ProductCardWrapper = styled.div`
 // Imagen del producto
 export const ProductImage = styled.div`
   width: 100%;
-  height: 200px; 
-  overflow: hidden; 
+  height: 200px;
+  overflow: hidden;
   display: flex;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   img {
     width: 100%;
     height: 100%;
-    object-fit: cover; 
+    object-fit: cover;
   }
 `;
 

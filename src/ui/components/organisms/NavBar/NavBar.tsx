@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Text from "@/ui/components/atoms/Text/Text"; // Asegúrate de que la ruta sea correcta
 import {
   NavbarContainer,
   Logo,
@@ -19,16 +20,32 @@ const Navbar: React.FC = () => {
 
   return (
     <NavbarContainer>
-      <Logo href="/">SantyXError</Logo>
+      <Logo href="/">
+        <Text as="p" size={5} color="bone">
+          SantyxError
+        </Text>{" "}
+      </Logo>
       <BurgerMenu onClick={toggleMenu}>
         <BurgerIcon />
         <BurgerIcon />
         <BurgerIcon />
       </BurgerMenu>
       <Menu $isOpen={isMenuOpen}>
-        <MenuItem href="/">Inicio</MenuItem>
-        <MenuItem href="/products">Productos</MenuItem>
-        <MenuItem href="/contact">Contacto</MenuItem>
+        <MenuItem href="/">
+          <Text as="p" size={4}>
+            Inicio
+          </Text>{" "}
+        </MenuItem>
+        <MenuItem href="/products">
+          <Text as="p" size={4}>
+            Productos
+          </Text>{" "}
+        </MenuItem>
+        <MenuItem href="/contact">
+          <Text as="p" size={4}>
+            Contacto
+          </Text>{" "}
+        </MenuItem>
       </Menu>
       <CartIconWrapper>
         <CartIcon />

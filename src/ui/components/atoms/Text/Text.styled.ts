@@ -75,7 +75,7 @@ const mapTypeStyles = (
     ${baseStyles}
     font-size: ${mapFontSize(theme)[size]};
     line-height: ${theme.lineHeight[4]};
-    margin: ${theme.spacing[3]};
+    margin: ${theme.spacing[1]};
     ${color &&
     css`
       color: ${theme.color[color] || color};

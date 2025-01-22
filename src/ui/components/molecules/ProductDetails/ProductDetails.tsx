@@ -1,5 +1,6 @@
 import React from "react";
 import { Product } from "@/core/domain/Product.model";
+import Text from "@/ui/components/atoms/Text/Text";
 import {
   ProductDetailsContainer,
   ProductInfo,
@@ -24,15 +25,35 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
       </ProductImageContainer>
 
       <ProductInfo>
-        <ProductTitle>{product.name}</ProductTitle>
-        <ProductDescription>{product.description}</ProductDescription>
+        <ProductTitle>
+          <Text as="h3" size={4} fontWeight="bold" align="left">
+            {product.name}
+          </Text>
+        </ProductTitle>
+
+        <ProductDescription>
+          <Text as="p" size={3} color="black" align="left">
+            {product.description}
+          </Text>
+        </ProductDescription>
+
         <ProductPrice>
-          <strong>Precio:</strong> {product.salePrice} €
+          <Text as="p" size={4} fontWeight="bold" color="success" align="left">
+            <strong>Precio:</strong> {product.salePrice} €
+          </Text>
         </ProductPrice>
+
         <ProductReview>
-          <strong>Review Average:</strong> {product.reviewAverage}
+          <Text as="p" size={3} color="textSecondary" align="left">
+            <strong>Review Average:</strong> {product.reviewAverage}
+          </Text>
         </ProductReview>
-        <AddToCartButton>Añadir al carrito</AddToCartButton>
+
+        <AddToCartButton>
+          <Text as="span" size={3} color="bone">
+            Añadir al carrito
+          </Text>
+        </AddToCartButton>
       </ProductInfo>
     </ProductDetailsContainer>
   );

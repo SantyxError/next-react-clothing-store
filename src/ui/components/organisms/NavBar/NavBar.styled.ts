@@ -10,19 +10,32 @@ export const NavbarContainer = styled.nav`
   color: ${({ theme }) => theme.color.background};
   box-shadow: ${({ theme }) => theme.boxShadow[2]};
   position: relative;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+
+  /* Agregar una sombra sutil al desplazarse */
+  &:hover {
+    background-color: ${({ theme }) => theme.color.hover};
+  }
 `;
 
 export const Logo = styled.a`
   font-size: ${({ theme }) => theme.fontSize[5]};
   font-weight: ${({ theme }) => theme.fontWeights.bold};
-  color: ${({ theme }) => theme.color.background};
+  color: white; /* El color blanco para el logo */
   text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: white; /* Asegurando que el color siga siendo blanco al pasar el mouse */
+  }
 `;
 
 export const BurgerMenu = styled.div`
   display: none;
   flex-direction: column;
   cursor: pointer;
+  z-index: 100;
 
   ${({ theme }) => theme.mediaQueries.mobile} {
     display: flex;
@@ -30,16 +43,22 @@ export const BurgerMenu = styled.div`
 `;
 
 export const BurgerIcon = styled.span`
-  width: 25px;
+  width: 30px;
   height: 3px;
   background-color: ${({ theme }) => theme.color.background};
-  margin: 3px 0;
+  margin: 5px 0;
   border-radius: ${({ theme }) => theme.borderRadius[1]};
+  transition: transform 0.3s ease;
+
+  &:hover {
+    background-color: ${({ theme }) => theme.color.warning};
+  }
 `;
 
 export const Menu = styled.div<{ $isOpen: boolean }>`
   display: flex;
   gap: ${({ theme }) => theme.spacing[4]};
+  align-items: center;
 
   ${({ theme }) => theme.mediaQueries.mobile} {
     display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
@@ -51,6 +70,7 @@ export const Menu = styled.div<{ $isOpen: boolean }>`
     background-color: ${({ theme }) => theme.color.linkHover};
     box-shadow: ${({ theme }) => theme.boxShadow[3]};
     padding: ${({ theme }) => theme.spacing[4]};
+    z-index: 50;
   }
 `;
 
@@ -62,11 +82,14 @@ export const MenuItem = styled.a`
 
   &:hover {
     color: ${({ theme }) => theme.color.warning};
-    transform: scale(1.1);
+    transform: scale(1.05);
+  }
+
+  ${({ theme }) => theme.mediaQueries.mobile} {
+    font-size: ${({ theme }) => theme.fontSize[3]};
   }
 `;
 
-// Contenedor para el ícono de la cesta
 export const CartIconWrapper = styled.div`
   display: flex;
   align-items: center;
@@ -74,6 +97,7 @@ export const CartIconWrapper = styled.div`
   margin-left: auto;
   cursor: pointer;
   padding: 5px;
+  transition: transform 0.3s ease;
 
   @media (min-width: 768px) {
     margin-left: 20px;
@@ -81,17 +105,16 @@ export const CartIconWrapper = styled.div`
 
   &:hover {
     transform: scale(1.1);
-    transition: transform 0.3s ease;
   }
 `;
 
-// Ícono de la cesta
 export const CartIcon = styled(FaShoppingCart)`
   font-size: 24px;
   color: ${({ theme }) => theme.color.background};
-  transition: color 0.3s ease;
+  transition: color 0.3s ease, transform 0.3s ease;
 
   &:hover {
     color: ${({ theme }) => theme.color.warning};
+    transform: scale(1.2);
   }
 `;

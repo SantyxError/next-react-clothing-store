@@ -9,11 +9,11 @@ export const ProductDetailsContainer = styled.div`
   padding: ${({ theme }) => theme.spacing[5]};
   border-radius: ${({ theme }) => theme.borderRadius[3]};
   box-shadow: ${({ theme }) => theme.boxShadow[2]};
-  max-width: 900px; 
+  max-width: 900px;
   margin: 0 auto;
 
   ${({ theme }) => theme.mediaQueries.mobile} {
-    flex-direction: column; 
+    flex-direction: column;
     padding: ${({ theme }) => theme.spacing[3]};
   }
 `;
@@ -37,7 +37,7 @@ export const ProductImage = styled.img`
 `;
 
 export const ProductInfo = styled.div`
-  flex: 2; 
+  flex: 2;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -59,7 +59,7 @@ export const ProductDescription = styled.p`
 export const ProductPrice = styled.p`
   font-size: ${({ theme }) => theme.fontSize[5]};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  color: ${({ theme }) => theme.color.textPrimary};
+  color: ${({ theme }) => theme.color.black};
   margin-bottom: ${({ theme }) => theme.spacing[2]};
 
   strong {
@@ -69,7 +69,7 @@ export const ProductPrice = styled.p`
 
 export const ProductReview = styled.p`
   font-size: ${({ theme }) => theme.fontSize[4]};
-  color: ${({ theme }) => theme.color.textSecondary};
+  color: ${({ theme }) => theme.color.linkHover};
   margin-top: ${({ theme }) => theme.spacing[2]};
   font-style: italic;
 `;
