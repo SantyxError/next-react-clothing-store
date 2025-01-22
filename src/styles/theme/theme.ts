@@ -12,6 +12,7 @@ interface DefaultTheme {
     success: string;
     warning: string;
     error: string;
+    black: string;
   };
 
   fontFamily: {
@@ -154,6 +155,7 @@ export const theme: DefaultTheme = {
     success: "#4caf50", // Verde para éxito
     warning: "#ffeb3b", // Amarillo para advertencia
     error: "#d32f2f", // Rojo oscuro para error
+    black: "#000000", //Negro
   },
 
   fontFamily: {
