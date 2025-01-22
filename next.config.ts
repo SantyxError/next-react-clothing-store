@@ -2,7 +2,14 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
-    domains: ["pisces.bbystatic.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "pisces.bbystatic.com",
+        port: "",
+        pathname: "/**", 
+      },
+    ],
   },
   reactStrictMode: true,
 };

@@ -25,13 +25,13 @@ const Navbar: React.FC = () => {
         <BurgerIcon />
         <BurgerIcon />
       </BurgerMenu>
-      <Menu isOpen={isMenuOpen}>
+      <Menu $isOpen={isMenuOpen}>
         <MenuItem href="/">Inicio</MenuItem>
         <MenuItem href="/products">Productos</MenuItem>
         <MenuItem href="/contact">Contacto</MenuItem>
       </Menu>
       <CartIconWrapper>
-        <CartIcon size={24} />
+        <CartIcon />
       </CartIconWrapper>
     </NavbarContainer>
   );

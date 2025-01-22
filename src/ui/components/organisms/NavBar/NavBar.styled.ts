@@ -1,79 +1,68 @@
 import styled from "styled-components";
 import { FaShoppingCart } from "react-icons/fa";
 
-// Contenedor principal del Navbar
 export const NavbarContainer = styled.nav`
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 16px;
+  justify-content: space-between;
+  padding: ${({ theme }) => theme.spacing[4]};
   background-color: ${({ theme }) => theme.color.linkHover};
+  color: ${({ theme }) => theme.color.background};
+  box-shadow: ${({ theme }) => theme.boxShadow[2]};
   position: relative;
 `;
 
-// Logo a la izquierda
 export const Logo = styled.a`
   font-size: ${({ theme }) => theme.fontSize[5]};
-  font-weight: bold;
-  text-decoration: none;
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
   color: ${({ theme }) => theme.color.background};
+  text-decoration: none;
 `;
 
-// Menú hamburguesa (para móviles)
 export const BurgerMenu = styled.div`
-  display: flex;
+  display: none;
   flex-direction: column;
   cursor: pointer;
-  @media (min-width: 768px) {
-    display: none;
-  }
-`;
 
-export const BurgerIcon = styled.div`
-  width: 24px;
-  height: 2px;
-  background-color: ${({ theme }) => theme.color.text};
-  margin: 4px 0;
-`;
-
-// Menú desplegable
-export const Menu = styled.div<{ isOpen: boolean }>`
-  display: ${({ isOpen }) => (isOpen ? "flex" : "none")};
-  flex-direction: column;
-  position: absolute;
-  top: 60px;
-  right: 0;
-  color: ${({ theme }) => theme.color.background};
-  width: 200px;
-  border-radius: 8px;
-  z-index: 10;
-
-  @media (min-width: 768px) {
+  ${({ theme }) => theme.mediaQueries.mobile} {
     display: flex;
-    flex-direction: row;
-    position: static;
-    box-shadow: none;
-    width: auto;
   }
 `;
 
-// Estilo de los elementos del menú
+export const BurgerIcon = styled.span`
+  width: 25px;
+  height: 3px;
+  background-color: ${({ theme }) => theme.color.background};
+  margin: 3px 0;
+  border-radius: ${({ theme }) => theme.borderRadius[1]};
+`;
+
+export const Menu = styled.div<{ $isOpen: boolean }>`
+  display: flex;
+  gap: ${({ theme }) => theme.spacing[4]};
+
+  ${({ theme }) => theme.mediaQueries.mobile} {
+    display: ${({ $isOpen }) => ($isOpen ? "flex" : "none")};
+    position: absolute;
+    top: 100%;
+    left: 0;
+    flex-direction: column;
+    width: 100%;
+    background-color: ${({ theme }) => theme.color.linkHover};
+    box-shadow: ${({ theme }) => theme.boxShadow[3]};
+    padding: ${({ theme }) => theme.spacing[4]};
+  }
+`;
+
 export const MenuItem = styled.a`
-  font-size: 16px;
+  font-size: ${({ theme }) => theme.fontSize[4]};
+  color: ${({ theme }) => theme.color.background};
   text-decoration: none;
-  color: ${({ theme }) => theme.color.text};
-  padding: 10px 15px;
-  text-align: center;
-  transition: background-color 0.3s, color 0.3s;
-  / &:hover {
+  transition: transform 0.3s ease, color 0.3s ease;
+
+  &:hover {
     color: ${({ theme }) => theme.color.warning};
     transform: scale(1.1);
-    transition: transform 0.3s ease;
-  }
-
-  @media (min-width: 768px) {
-    padding: 10px 20px;
-    text-align: left;
   }
 `;
 
